@@ -1,0 +1,11 @@
+CREATE DATABASE school;
+USE school;
+CREATE TABLE course(
+cid INT,
+cname VARCHAR(50)
+);
+INSERT INTO course(cid, cname)
+VALUES(1,"phy"),
+(2,"maths");
+SELECT * FROM course;
+SHOW TABLES;

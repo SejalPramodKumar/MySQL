@@ -1,0 +1,85 @@
+CREATE DATABASE college;
+USE college;
+
+-- A table can have multiple foreign keys but can only have 1 primary key.
+-- A server can have multiple databases and a dabase can have multiple tables.
+
+-- unique constraint
+
+CREATE TABLE student (
+phonenbr INT UNIQUE
+); 
+INSERT INTO student(phonenbr) -- will show ERROR
+VALUES
+(123),
+(456)
+(123);
+INSERT INTO student(phonenbr)
+VALUES
+(123),
+(456);
+
+-- not null constraint
+
+CREATE TABLE student1(
+age INT,
+rollno INT NOT NULL
+);
+INSERT INTO student1(age) -- will show ERROR
+VALUES(27);
+INSERT INTO student1(age,rollno) 
+VALUES(27,1);
+
+-- check constraint
+
+CREATE TABLE student3(
+age INT CHECK(age>18)
+); 
+INSERT INTO student3(age)  -- will show ERROR
+VALUES (13);
+INSERT INTO student3(age) 
+VALUES (21);
+ 
+ 
+-- default constraint
+
+CREATE TABLE student5(
+schoolName VARCHAR(50) DEFAULT 'XYZ',
+age INT
+);  
+INSERT INTO student5(age)
+VALUES (19);
+SELECT * FROM student5;
+
+
+-- While inserting we may or may not write column name(sequence); as by default it will take order in which you have written schema of table if u not specify in which order u are giving column values.
+
+
+-- primary key constraint
+
+CREATE TABLE student6(
+age INT, 
+rollno INT PRIMARY KEY
+);
+
+-- (checking) unique
+
+INSERT INTO student6(age, rollno)  -- will show ERROR
+VALUES
+(12,1),
+(13,2),
+(14,2);
+
+-- (checking) not null
+
+INSERT INTO student6(age)  -- will show ERROR
+VALUES
+(12);  
+
+
+-- foreign key constraint
+CREATE TABLE course(
+courseName VARCHAR(50),
+rollno INT,
+FOREIGN KEY (rollno) REFERENCES student6(rollno)
+);

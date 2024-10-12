@@ -9,7 +9,7 @@ name VARCHAR(50),
 age INT,
 department VARCHAR(50),
 city VARCHAR(50),
-salary int
+salary INT
 );
 
 -- 3. Fill details in the table

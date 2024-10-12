@@ -1,0 +1,64 @@
+-- 1. Make a database for a company 
+CREATE DATABASE company;
+USE company;
+
+-- 2. Make an employee table in the company database. 
+CREATE TABLE employee(
+id INT PRIMARY KEY,
+name VARCHAR(50),
+age INT,
+department VARCHAR(50),
+city VARCHAR(50),
+salary INT
+);
+
+-- 3. Fill details in the table
+INSERT INTO employee(id, name, age, department, city, salary)
+VALUES
+(1,"Rahul", 25, "IT","Mumbai",1500),
+(2,"Afsara",26,"HR","Pune",2000),
+(3,"Abhimanyu",27,"IT","Mumbai",2500),
+(4,"Aditya",25,"Marketing","Surat",2400),
+(5, "Raj",24,"Finance","Indore",1500);
+
+-- 4. See all the data
+Select * FROM employee;
+
+-- AND operator
+SELECT * FROM employee
+WHERE age>20 AND department="IT";
+
+-- OR operator
+SELECT * FROM employee
+WHERE age>20 OR department="IT";
+
+-- NOT operator
+SELECT * FROM employee
+WHERE department NOT IN("IT", "HR");
+
+-- IN & OR gives same result but only difference is that in IN we can give list of values and that values can be for any column we don't need to specify like deparment, or anything else.
+
+-- IN operator
+SELECT * FROM employee
+WHERE department IN ("IT","HR");
+
+-- IS NULL / NOT NULL operator
+SELECT * FROM employee
+WHERE department IS NOT NULL;       
+
+-- LIKE gives all information regarding things whose value start with that given character with LIKE and can have 0 or more characters after that.
+--  It (LIKE) doesn't matter how long the name/value is or it doesn't matter how many characters are there after it but they are having that (given in LIKE operator) character in the very starting.
+-- % means can have 0 or more chars after that.
+
+-- Like operator %
+SELECT * FROM employee
+WHERE name LIKE "A%"; 
+
+-- Like operator _
+SELECT * FROM employee
+WHERE name LIKE "_A%"; -- means 2nd character must be a A/a and after that it can have 0 or as many characters.
+
+-- between operator
+SELECT * FROM employee
+WHERE SALARY BETWEEN 1200 AND 1500; -- between is an inclusive operator mens it will search for a employee who has salary 1200 as well as for salary 1500 and any salary which lies in the range (inclusing 1200 and 1500 also).
+ 

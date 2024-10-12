@@ -1,0 +1,50 @@
+-- 1. Make a database for a company xyz 
+CREATE DATABASE xyz;
+USE xyz;
+
+-- 2. Make an employee table in the xyz database. 
+CREATE TABLE employee(
+id INT PRIMARY KEY,
+name VARCHAR(50),
+age INT,
+department VARCHAR(50),
+city VARCHAR(50),
+salary int
+);
+
+-- 3. Fill details in the table
+INSERT INTO employee(id, name, age, department, city, salary)
+VALUES
+(1,"Rahul", 25, "IT","Mumbai",1500),
+(2,"Afsara",26,"HR","Pune",2000),
+(3,"Abhimanyu",27,"IT","Mumbai",2500),
+(4,"Aditya",25,"Marketing","Surat",2400),
+(5, "Raj",24,"Finance","Indore",1500);
+
+-- 4. See all the data
+Select * FROM employee;  -- *(Asterics) means all/all columns or data which is present in the table/all
+
+ALTER TABLE employee
+ADD dob VARCHAR(20) DEFAULT "np"; -- np means not present
+
+Select * FROM employee;
+
+ALTER TABLE employee
+DROP COLUMN dob;
+
+Select * FROM employee;
+
+ALTER TABLE employee
+MODIFY age VARCHAR(3);
+
+Select * FROM employee;
+
+ALTER TABLE employee
+CHANGE age emp_age VARCHAR(3); -- can give new datatype else give old datatype of the column
+
+Select * FROM employee;
+
+ALTER TABLE employee
+RENAME COLUMN emp_age TO age;
+
+Select * FROM employee;

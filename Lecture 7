@@ -48,3 +48,35 @@ ALTER TABLE employee
 RENAME COLUMN emp_age TO age;
 
 Select * FROM employee;
+
+-- Schema is basically all the properties or attributes or characterstics of table which is displayed by the column.
+
+-- renaming employee to employees
+RENAME TABLE employee TO employees;
+Select * FROM employee; -- will show ERROR
+Select * FROM employees;
+
+-- renaming name to emp_name
+ALTER TABLE employees
+RENAME COLUMN name TO emp_name;
+Select * FROM employees;
+
+-- renaming of database mostly depends on the server as server may or may not allow renaming of the database due to security risks involved and also there are several security requests and protocols which needs to be accepted before renaming of the database. 
+
+-- Truncate means data present in the table is deleted and only the structure/schema of the table remains preserved.
+ 
+CREATE TABLE salarydetails(
+salary INT,
+increment INT 
+); 
+
+INSERT INTO salarydetails(salary, increment)
+VALUES
+(1200,6),
+(1500, 4);
+
+SELECT * FROM salarydetails;
+
+TRUNCATE TABLE salarydetails;
+
+SELECT * FROM salarydetails;

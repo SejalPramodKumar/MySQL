@@ -9,8 +9,10 @@ name VARCHAR(50),
 age INT,
 department VARCHAR(50),
 city VARCHAR(50),
-salary int
+salary INT
 );
+
+-- Words in SQL can be written in whole word capital/small.
 
 -- 3. Fill details in the table
 INSERT INTO employee(id, name, age, department, city, salary)

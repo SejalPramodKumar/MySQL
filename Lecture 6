@@ -21,7 +21,7 @@ VALUES
 (4,"Aditya",25,"Marketing","Surat",2400),
 (5, "Raj",24,"Finance","Indore",1500);
 
--- 4. See all the date
+-- 4. See all the data
 Select * FROM employee;  -- *(Asterics) means all/all columns or data which is present in the table/all
 
 UPDATE employee  -- will show ERROR

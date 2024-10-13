@@ -1,0 +1,187 @@
+-- We can reverse the order of table for inner join as it gives coomon b/w both the table but order matter in all other joins.
+-- We can provide column names specifically from which we want to fetch the data and it we provide * it will fetch all the columns which is present in table1 as well as in table2.
+-- Joins work on shared/common column b/w tables ant the column may or may not be Foreign key.
+
+-- 1. Make a database for a ecommerce
+CREATE DATABASE ecomm;
+USE ecomm;
+
+-- 2. Make a customer table in the ecommerce database.
+CREATE TABLE customer(
+id INT,
+name VARCHAR(50)
+);
+
+-- 3. Fill details in the table
+INSERT INTO customer(id, name)
+VALUES
+(1,"Rahul"),
+(2,"Afsara"),
+(3,"Abhimanyu"),
+(4,"Aditya"),
+(5,"Raj");
+ 
+-- 4. See all the data
+SELECT * FROM customer;
+
+USE ecomm; 
+
+-- 5. Make a orders table in the ecommerce database.
+CREATE TABLE orders(
+id INT PRIMARY KEY,
+ordername VARCHAR(50)
+);
+
+-- 6. Fill details in the table
+INSERT INTO orders(id,ordername)
+VALUES
+(2,"Fruit"),
+(3,"Ball"),
+(4,"Utensil");
+
+-- 7. See all the data
+SELECT * FROM orders;
+
+-- INNER JOIN
+SELECT * -- After SELECT we provide all the columns which we want to show in the final result.
+FROM customer
+INNER JOIN orders
+ON customer.id=orders.id;   
+
+SELECT customer.id, orders.ordername, customer.name
+FROM customer
+INNER JOIN orders
+ON customer.id=orders.id;   -- Dot(.) is basicallyb used to refer to a column which is present in this/the particular table.
+
+-- LEFT JOIN    
+SELECT *
+FROM customer
+LEFT JOIN orders
+ON customer.id=orders.id;    
+
+-- RIGHT JOIN    
+SELECT *
+FROM customer
+RIGHT JOIN orders
+ON customer.id=orders.id;  -- Join condition is written after ON
+ 
+SELECT * FROM customer;
+SELECT * FROM orders;
+
+-- Full Outer Join
+  
+SELECT *
+FROM customer
+LEFT JOIN orders
+ON customer.id=orders.id    
+UNION
+SELECT *
+FROM customer
+RIGHT JOIN orders
+ON customer.id=orders.id; -- ; used as terminator.
+  
+-- In cross join we combine 2 tables.
+-- Cross product b/w 2 tables is the result of/gives cross join.
+
+-- Cross Join
+SELECT * -- SELECT * -> will give all columns present in both/all tables.
+FROM customer
+CROSS JOIN orders; 
+  
+-- m*n = 5*3=15 rows  -> Result of above CROSS JOIN will have these many rows.
+
+-- Self Join
+
+-- 1. Make a database for a school
+CREATE DATABASE school;
+USE school;
+
+-- 2. Make a student table in the school database.
+CREATE TABLE student(
+s_id INT,
+name VARCHAR(50),
+mentor_id int
+);
+
+-- 3. Fill details in the table
+INSERT INTO student(s_id,name,mentor_id)
+VALUES
+(1,"Ram",NULL),
+(2,"Rahul",1),
+(3,"Riti",1),
+(4,"Riya",3);
+
+-- 4. See all the data
+SELECT * FROM student;    
+
+SELECT s1.name,s2.name -- Here specify table as well fom which u want column to be showm in the result table.
+FROM student as s1
+JOIN student as s2
+WHERE s1.s_id=s2.mentor_id;
+
+SELECT s1.name as mentor_name,s2.name as student_name  -- Here provide alias/another name for the column to be showm from which table.
+FROM student as s1
+JOIN student as s2
+WHERE s1.s_id=s2.mentor_id;
+
+-- Join means combining tables. 
+-- UNION makes sure that matched rows b/w left & right table doesn't occur twice. 
+
+USE ecomm;  
+
+-- Exclusive Joins
+
+-- Left excl join
+
+SELECT * -- left join
+FROM customer
+LEFT JOIN orders
+ON customer.id=orders.id;
+
+SELECT * -- left excl join
+FROM customer
+LEFT JOIN orders
+ON customer.id=orders.id
+WHERE orders.id IS NULL;  -- exclude all matched rows
+
+-- Right excl join
+
+SELECT * -- right join
+FROM customer
+RIGHT JOIN orders
+ON customer.id=orders.id;
+
+SELECT * -- right excl join
+FROM customer
+RIGHT JOIN orders
+ON customer.id=orders.id
+WHERE orders.id IS NULL;  -- exclude all matched rows
+
+-- Full excl join
+
+SELECT * -- left excl join
+FROM customer
+LEFT JOIN orders
+ON customer.id=orders.id
+WHERE orders.id IS NULL  -- exclude all matched rows
+UNION
+SELECT * -- right excl join
+FROM customer
+RIGHT JOIN orders
+ON customer.id=orders.id
+WHERE orders.id IS NULL;  -- exclude all matched rows
+
+-- UNION
+
+SELECT id FROM customer;
+SELECT id FROM orders;
+
+SELECT id FROM customer
+UNION 
+SELECT id FROM orders;
+
+-- UNION ALL
+SELECT id FROM customer
+UNION ALL
+SELECT id FROM orders;  
+

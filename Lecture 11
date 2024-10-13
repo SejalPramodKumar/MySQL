@@ -42,3 +42,69 @@ SELECT department, AVG(salary) AS avgsalary
 FROM employee
 GROUP BY department
 HAVING avgsalary>1200;
+
+SELECT * FROM employee;
+
+-- emp salary>min-salary
+
+USE company;
+
+-- min salary
+SELECT MIN(salary)
+FROM employee;
+
+-- sal>min_salary
+SELECT name, salary
+FROM employee
+WHERE salary> (SELECT MIN(salary)
+FROM employee);
+
+-- age=min_age
+
+-- min_age
+SELECT MIN(age) FROM employee;     
+
+-- age=min_age
+SELECT name, age
+FROM employee
+WHERE age=(SELECT MIN(age) FROM employee);
+
+-- min age
+SELECT MIN(age) AS min_age
+FROM employee;
+
+-- all the emp age>min_Age
+SELECT name,age
+FROM employee, (SELECT MIN(age) AS min_age
+FROM employee) AS min_age_query
+WHERE age>min_age_query.min_age; 
+  
+SELECT emp.name,emp.age -- provided employee with another name as 'emp'
+FROM employee emp, (SELECT MIN(age) AS min_age
+FROM employee) AS min_age_query
+WHERE emp.age>min_age_query.min_age;   
+
+-- avg age
+SELECT AVG(age) FROM employee;
+
+-- age avg age
+
+SELECT age, AVG(age) -- will show ERROR
+FROM employee; 
+
+SELECT age, AVG(age) AS avg_age -- will show ERROR
+FROM employee; 
+
+SELECT age, (SELECT AVG(age) FROM employee) AS avg_age
+FROM employee;  
+
+-- 4TH HIGHEST SALARY
+
+SELECT DISTINCT salary -- To avoid duplicate salary values and take distinct values.
+FROM employee
+ORDER BY salary DESC;
+
+SELECT DISTINCT salary -- To avoid duplicate salary values and take distinct values.
+FROM employee
+ORDER BY salary DESC
+LIMIT 3,1; -- n-1=4-1=3 

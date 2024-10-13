@@ -115,3 +115,6 @@ CREATE VIEW employeeView AS
 SELECT id, name, city FROM employee;
 
 SELECT id FROM employeeView;
+
+-- AS is used to provide results in new column category(IF & CASE Statement).
+-- If u use IF then time complexity will be lesser than CASE so if time complexity is very less so the queries run very faster but when u use the CASE the time complexity is a bit more than IF so the queries take time to run.

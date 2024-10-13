@@ -198,8 +198,9 @@ DELIMITER ;
 CALL getOrderDetails();
 
 -- IN keyword specifies it's an input parameter in Stored Procedures. 
+-- Since View is just like a virtual table so all the things which we perform on a table can be performed on Views.
 -- <> (Not Equal To Symbol)
 -- If we not provide any value for a particular record / data entry and also it fills the null value there if we don't provide a Not NULL Constraint.
---  Since View is just like a virtual table so all the things which we perform on a table can be performed on Views.
- 
+-- Foreign key in a given tsble can also act as a Primary Key and can also not as a Primary Key. So it is not important for foreign key to act as a P.K. for another table.
+-- For creating condition we use IF & CASE. 
 

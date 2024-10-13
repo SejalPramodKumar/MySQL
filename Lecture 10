@@ -1,0 +1,79 @@
+-- All the funcs/methods which is helping us to do some manipulations or calcs on a collated/collected set of data that is called aggregated funcn.
+
+-- 1. Make a database for a company 
+CREATE DATABASE company;
+USE company;
+
+-- 2. Make an employee table in the company database. 
+CREATE TABLE employee(
+id INT PRIMARY KEY,
+name VARCHAR(50),
+age INT,
+department VARCHAR(50),
+city VARCHAR(50),
+salary INT
+);
+
+-- 3. Fill details in the table
+INSERT INTO employee(id, name, age, department, city, salary)
+VALUES
+(1,"Rahul", 25, "IT","Mumbai",1500),
+(2,"Afsara",26,"HR","Pune",2000),
+(3,"Abhimanyu",27,"IT","Mumbai",2500),
+(4,"Aditya",25,"Marketing","Surat",2400),
+(5, "Raj",24,"Finance","Indore",1500);
+
+-- 4. See all the data
+Select * FROM employee;
+ 
+-- Aggregated Functions
+
+-- COUNT()
+SELECT COUNT(name) FROM employee;
+
+-- SUM() & AVG() work on numeric columns.
+
+-- SUM()
+SELECT SUM(salary) FROM employee;
+
+-- AVG()   
+SELECT AVG(salary) FROM employee;  
+
+-- MIN()
+SELECT MIN(salary) FROM employee;
+
+-- MAX()
+SELECT MAX(salary) FROM employee;  
+
+-- AS keyword doesn't create a new physical column in the table, it creates an alias or alternate name for the colun.
+-- Aggregated/Collated data
+
+-- GROUP BY clause
+
+SELECT department, AVG(salary) 
+FROM employee
+GROUP BY department;
+
+SELECT department, AVG(salary) AS avgsal
+FROM employee
+GROUP BY department;
+
+-- HAVING clause
+SELECT department, AVG(salary) AS avgsalary
+FROM employee
+GROUP BY department 
+HAVING avgsalary>1500;
+
+SELECT department, AVG(salary) AS avgsalary
+FROM employee
+GROUP BY department 
+HAVING avgsalary>=1500;
+
+SELECT department, AVG(salary) AS avgsalary
+FROM employee
+GROUP BY department 
+HAVING avgsalary>2000;
+
+-- Aggregation/Aggregate funcn are the funcs which work on some collated or some collected set of data and returns a single value based on some manipulation.
+-- WHERE clause is always used befire the aggregate funcns means we should always be using it on individual rows not some group of rows/collected rows.
+ 

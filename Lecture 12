@@ -198,6 +198,8 @@ DELIMITER ;
 CALL getOrderDetails();
 
 -- IN keyword specifies it's an input parameter in Stored Procedures. 
+-- <> (Not Equal To Symbol)
+-- If we not provide any value for a particular record / data entry and also it fills the null value there if we don't provide a Not NULL Constraint.
 --  Since View is just like a virtual table so all the things which we perform on a table can be performed on Views.
  
 

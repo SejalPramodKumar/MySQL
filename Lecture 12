@@ -191,8 +191,8 @@ USE ecomm;
 DELIMITER / -- To change the terminator symbol.
 CREATE PROCEDURE getOrderDetails()
 BEGIN
-SELECT * FROM orders
-END/
+SELECT * FROM orders;
+END /
 DELIMITER ;
 
 CALL getOrderDetails();

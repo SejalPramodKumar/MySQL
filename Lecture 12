@@ -183,5 +183,21 @@ SELECT id FROM orders;
 -- UNION ALL
 SELECT id FROM customer
 UNION ALL
-SELECT id FROM orders;  
+SELECT id FROM orders;  -- ;(Terminator) is used to end the query.
+
+USE ecomm;
+
+-- create a proc to get all order details
+DELIMITER / -- To change the terminator symbol.
+CREATE PROCEDURE getOrderDetails()
+BEGIN
+SELECT * FROM orders
+END/
+DELIMITER ;
+
+CALL getOrderDetails();
+
+-- IN keyword specifies it's an input parameter in Stored Procedures. 
+--  Since View is just like a virtual table so all the things which we perform on a table can be performed on Views.
+ 
 
